@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thông Tin Sinh Viên</title>
+    <style>
+        /* Căn giữa khung (card) trên màn hình */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Tăng chiều rộng khung (card) để chứa split layout */
+        .info-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 700px; /* Wider card */
+            overflow: hidden; /* Cần thiết cho border-radius */
+        }
+
+        /* Định dạng tiêu đề chính */
+        .card-header h2 {
+            text-align: center;
+            color: #333366;
+            margin-top: 30px;
+            margin-bottom: 0px;
+        }
+
+        /* CONTAINER CHIA ĐÔI: Sử dụng Flexbox */
+        .split-container {
+            display: flex;
+            align-items: center; /* Vertically center content blocks */
+            padding: 30px;
+        }
+
+        /* NỬA BÊN TRÁI: Chứa ảnh Avatar */
+        .avatar-half {
+            flex: 1; /* Share space equally (50%) */
+            text-align: center; /* Center image within half */
+            padding-right: 20px;
+            border-right: 1px solid #e0e0e0; /* Optional vertical separator */
+        }
+
+        /* NỬA BÊN PHẢI: Chứa thông tin */
+        .info-half {
+            flex: 1; /* Share space equally (50%) */
+            padding-left: 20px;
+        }
+
+        /* ĐỊNH DẠNG ẢNH AVATAR: Tròn 50% */
+        .avatar-half img {
+            width: 150px; /* Kích thước cụ thể cho hình tròn */
+            height: 150px;
+            border-radius: 50%; /* Make circular (as requested) */
+            object-fit: cover; /* Crucial: Prevents stretching/distortion */
+            border: 4px solid #f0f2f5; /* Optional inner border */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow on image */
+        }
+
+        /* KHỐI NỘI DUNG THÔNG TIN (cũ, được giữ nguyên căn chỉnh) */
+        .info-content {
+            display: table; /* Hiển thị như một cái bảng */
+            margin: 0; /* margin: 0 auto; if left-right padding isn't equal */
+            font-size: 16px;
+        }
+
+        /* Từng dòng */
+        .info-row {
+            display: table-row;
+        }
+
+        /* Cột dùng chung */
+        .label, .colon, .data {
+            display: table-cell;
+            padding-bottom: 15px; /* Khoảng cách dọc giữa các dòng */
+        }
+
+        /* Cột Nhãn (MSSV, Họ tên...) */
+        .label {
+            font-weight: bold;
+            color: #555;
+            white-space: nowrap; /* Không cho rớt dòng */
+        }
+
+        /* Cột dấu hai chấm (Ép thẳng hàng dọc) */
+        .colon {
+            font-weight: bold;
+            color: #555;
+            padding: 0 15px 0 5px; /* Căn lề trái phải cho dấu hai chấm */
+            text-align: center;
+        }
+        
+        /* Cột Dữ liệu */
+        .data {
+            color: #0056b3;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="info-card">
+        <div class="card-header">
+            <h2>Thông Tin Sinh Viên</h2>
+        </div>
+
+        <div class="split-container">
+            <div class="avatar-half">
+                <img th:src="@{~/Images/avt.jpg}" alt="Avatar">
+            </div>
+
+            <div class="info-half">
+                <div class="info-content">
+                    <div class="info-row">
+                        <span class="label">MSSV</span>
+                        <span class="colon">:</span>
+                        <span class="data" th:text="${ms}"></span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="label">Họ và tên</span>
+                        <span class="colon">:</span>
+                        <span class="data" th:text="${ten}"></span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="label">Năm sinh</span>
+                        <span class="colon">:</span>
+                        <span class="data" th:text="${nam}"></span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="label">Giới tính</span>
+                        <span class="colon">:</span>
+                        <span class="data" th:text="${gt}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
