@@ -22,18 +22,18 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/register", "/css/**", "/js/**").permitAll()
-                .requestMatchers("/products/new", "/products/edit/**", "/products/delete/**").hasRole("ADMIN")
+                // Chỉ Admin mới được vào các link quản lý
+                .requestMatchers("/products/new", "/products/edit/**").hasRole("ADMIN")
+                // Cả USER và ADMIN đều vào được trang danh sách
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
                 .loginPage("/login")
                 .permitAll()
-                .defaultSuccessUrl("/products", true)
+                .defaultSuccessUrl("/products", true) // Sau khi login xong sẽ chạy vào Controller ở Bước 1
             )
-            .logout(logout -> logout
-                .permitAll()
-                .logoutSuccessUrl("/login?logout")
-            );
+            .logout(logout -> logout.permitAll());
+        
         return http.build();
     }
 }
