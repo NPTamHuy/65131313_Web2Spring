@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family: Arial;
+}
+
+/* HEADER */
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px;
+    border-bottom:1px solid black;
+}
+
+.logo{
+    font-weight:bold;
+}
+
+.username{
+    font-size:18px;
+}
+
+/* MAIN */
+.main{
+    display:flex;
+    height:500px;
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:220px;
+    border-right:1px solid black;
+    padding:10px;
+}
+
+.sidebar h3{
+    margin-top:0;
+}
+
+.sidebar ul{
+    list-style:none;
+    padding:0;
+}
+
+.sidebar li{
+    border:1px solid black;
+    margin-bottom:5px;
+}
+
+.sidebar a{
+    text-decoration:none;
+    display:block;
+    padding:8px;
+    color:black;
+}
+
+.sidebar a:hover{
+    background:#eee;
+}
+
+/* CONTENT */
+.content{
+    flex:1;
+    padding:20px;
+    text-align:center;
+}
+
+/* FOOTER */
+.footer{
+    border-top:1px solid black;
+    text-align:center;
+    padding:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo">
+            KHOA CÔNG NGHỆ THÔNG TIN
+        </div>
+
+        <div class="username">
+            [UserName]
+        </div>
+    </div>
+
+    <div class="main">
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+
+            <h3>Dashboard</h3>
+
+            <ul>
+                <li><a href="#">Topic - List</a></li>
+                <li><a href="#">Topic - Addnew</a></li>
+            </ul>
+
+            <ul>
+                <li><a href="#">Student - List</a></li>
+                <li><a href="#">Student - Addnew</a></li>
+            </ul>
+
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content">
+            <h2>Content</h2>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        ©2025 by Student Name – FIT.NTU
+    </div>
+
+</div>
+
+</body>
+</html>

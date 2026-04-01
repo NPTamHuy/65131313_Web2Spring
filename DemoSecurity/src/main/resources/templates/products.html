@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Danh sách chứng khoán</title></head>
+<body>
+    <h1>Bảng giá trực tiếp</h1>
+    <p>Chào mừng bạn đã đăng nhập!</p>
+    
+    <ul>
+        <li th:each="s : ${stocks}" th:text="${s}">Mã chứng khoán</li>
+    </ul>
+
+    <div style="border: 1px solid red; padding: 10px; margin-top: 20px;">
+        <h3>Khu vực Admin</h3>
+        <p>Chỉ Admin mới thấy các nút này:</p>
+        <button>Thêm mã mới</button>
+        <button>Xóa mã</button>
+    </div>
+
+    <form th:action="@{/logout}" method="post" style="margin-top:20px">
+        <button type="submit">Đăng xuất</button>
+    </form>
+</body>
+</html>
