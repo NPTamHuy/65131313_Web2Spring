@@ -20,24 +20,7 @@ public class AdminController {
         this.loaiTinTucService = loaiTinTucService;
     }
 
-    @GetMapping("/categories")
-    public String listCategories(Model model) {
-        model.addAttribute("danhSachLoai", loaiTinTucService.getAllLoaiTinTuc());
-        return "admin-loai-tin";
-    }
-
-    @GetMapping("/categories/add")
-    public String showAddCategoryForm(Model model) {
-        model.addAttribute("loaiTin", new loaitintuc());
-        return "add-category";
-    }
-
-    @PostMapping("/categories/save")
-    public String saveCategory(@ModelAttribute("loaiTin") loaitintuc loaiTin) {
-        loaiTinTucService.saveLoaiTinTuc(loaiTin);
-        return "redirect:/admin/categories";
-    }
-
+    // Quản lý tin tức
     @GetMapping("")
     public String adminIndex(Model model) {
         model.addAttribute("danhSachTin", tinTucService.getAllTinTuc());
@@ -68,5 +51,29 @@ public class AdminController {
     public String deleteTin(@PathVariable("id") Integer id) {
         tinTucService.deleteTinTuc(id);
         return "redirect:/admin";
+    }
+
+    @GetMapping("/categories")
+    public String listCategories(Model model) {
+        model.addAttribute("danhSachLoai", loaiTinTucService.getAllLoaiTinTuc());
+        return "admin-loai-tin";
+    }
+
+    @GetMapping("/categories/add")
+    public String showAddCategoryForm(Model model) {
+        model.addAttribute("loaiTin", new loaitintuc());
+        return "add-category";
+    }
+
+    @PostMapping("/categories/save")
+    public String saveCategory(@ModelAttribute("loaiTin") loaitintuc loaiTin) {
+        loaiTinTucService.saveLoaiTinTuc(loaiTin);
+        return "redirect:/admin/categories";
+    }
+
+    @GetMapping("/categories/delete/{id}")
+    public String deleteCategory(@PathVariable("id") Integer id) {
+        loaiTinTucService.deleteLoaiTinTuc(id);
+        return "redirect:/admin/categories";
     }
 }

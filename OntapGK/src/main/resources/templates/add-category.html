@@ -14,7 +14,7 @@
                     <h4 class="mb-0">📁 Thêm Chuyên Mục Mới</h4>
                 </div>
                 <div class="card-body">
-                    <form th:action="@{/admin/loai-tin/save}" th:object="${loaiTin}" method="post">
+                    <form th:action="@{/admin/categories/save}" th:object="${loaiTin}" method="post">
                         <div class="mb-3">
                             <label class="form-label fw-bold">Tên chuyên mục</label>
                             <input type="text" class="form-control" th:field="*{tenLoai}" 
