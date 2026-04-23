@@ -1,5 +1,10 @@
 package com.example.OntapGK.repos;
 
-public interface TinTucRepository {
+import com.example.OntapGK.models.tintuc;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
+public interface TinTucRepository extends JpaRepository<tintuc, Integer> {
+    
 }
