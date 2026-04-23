@@ -27,6 +27,13 @@ public class HomeController {
         return "index"; 
     }
 
+    @GetMapping("/loai/{id}")
+    public String tinTucTheoLoai(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("danhSachTin", tinTucService.getTinTucByLoai(id)); 
+        model.addAttribute("danhSachLoai", loaiTinTucService.getAllLoaiTinTuc());
+        return "index"; 
+    }
+
     @GetMapping("/tin-tuc/{id}")
     public String detail(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("tin", tinTucService.getTinTucById(id));
@@ -45,7 +52,6 @@ public class HomeController {
         if ("admin".equals(user) && "123".equals(pass)) {
             return "redirect:/admin";
         }
-        
         model.addAttribute("error", true);
         return "login";
     }

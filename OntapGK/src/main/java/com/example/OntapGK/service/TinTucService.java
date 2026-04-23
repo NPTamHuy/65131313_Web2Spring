@@ -20,6 +20,10 @@ public class TinTucService {
         return tinTucRepository.findAll();
     }
 
+    public List<tintuc> getTinTucByLoai(Integer idLoai) {
+        return tinTucRepository.findByLoaiTinTucIdLoai(idLoai);
+    }
+
     public tintuc getTinTucById(Integer id) {
         Optional<tintuc> optional = tinTucRepository.findById(id);
         return optional.orElse(null);

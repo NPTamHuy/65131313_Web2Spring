@@ -1,6 +1,7 @@
 package com.example.OntapGK.controllers;
 
 import com.example.OntapGK.models.tintuc;
+import com.example.OntapGK.models.loaitintuc;
 import com.example.OntapGK.service.TinTucService;
 import com.example.OntapGK.service.LoaiTinTucService;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,24 @@ public class AdminController {
         this.loaiTinTucService = loaiTinTucService;
     }
 
+    @GetMapping("/categories")
+    public String listCategories(Model model) {
+        model.addAttribute("danhSachLoai", loaiTinTucService.getAllLoaiTinTuc());
+        return "admin-loai-tin";
+    }
+
+    @GetMapping("/categories/add")
+    public String showAddCategoryForm(Model model) {
+        model.addAttribute("loaiTin", new loaitintuc());
+        return "add-category";
+    }
+
+    @PostMapping("/categories/save")
+    public String saveCategory(@ModelAttribute("loaiTin") loaitintuc loaiTin) {
+        loaiTinTucService.saveLoaiTinTuc(loaiTin);
+        return "redirect:/admin/categories";
+    }
+
     @GetMapping("")
     public String adminIndex(Model model) {
         model.addAttribute("danhSachTin", tinTucService.getAllTinTuc());
@@ -28,6 +47,13 @@ public class AdminController {
     @GetMapping("/add")
     public String showAddForm(Model model) {
         model.addAttribute("tin", new tintuc());
+        model.addAttribute("danhSachLoai", loaiTinTucService.getAllLoaiTinTuc());
+        return "add-edit";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("tin", tinTucService.getTinTucById(id));
         model.addAttribute("danhSachLoai", loaiTinTucService.getAllLoaiTinTuc());
         return "add-edit";
     }
