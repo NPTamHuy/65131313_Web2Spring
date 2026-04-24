@@ -21,23 +21,21 @@ public class HomeController {
 
     @GetMapping("/")
     public String trangChu(Model model) {
-        model.addAttribute("dsTinTuc", tinTucService.getAllTinTuc());
-        model.addAttribute("dsLoai", loaiTinTucService.getAllLoaiTinTuc());
+        model.addAttribute("danhSachTin", tinTucService.getAllTinTuc()); 
+        model.addAttribute("danhSachLoai", loaiTinTucService.getAllLoaiTinTuc());
         return "index";
     }
 
-    @GetMapping("/the-loai/{id}")
+    @GetMapping("/loai/{id}")
     public String tinTheoLoai(@PathVariable("id") int id, Model model) {
-        model.addAttribute("dsTinTuc", tinTucService.getTinTucByLoai(id));
-        model.addAttribute("dsLoai", loaiTinTucService.getAllLoaiTinTuc());
-        model.addAttribute("loaiHienTai", loaiTinTucService.getLoaiTinTucById(id));
+        model.addAttribute("danhSachTin", tinTucService.getTinTucByLoai(id));
+        model.addAttribute("danhSachLoai", loaiTinTucService.getAllLoaiTinTuc());
         return "index";
     }
 
-    @GetMapping("/chi-tiet/{id}")
+    @GetMapping("/tin-tuc/{id}")
     public String chiTietTin(@PathVariable("id") int id, Model model) {
         model.addAttribute("tin", tinTucService.getTinTucById(id));
-        model.addAttribute("dsLoai", loaiTinTucService.getAllLoaiTinTuc());
         return "detail";
     }
 
@@ -54,7 +52,7 @@ public class HomeController {
             session.setAttribute("user", user);
             return "redirect:/admin";
         }
-        model.addAttribute("error", "Tên đăng nhập hoặc mật khẩu không đúng!");
+        model.addAttribute("error", true);
         return "login";
     }
 

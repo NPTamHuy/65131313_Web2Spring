@@ -2,57 +2,72 @@
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập Quản trị viên</title>
+    <title>Đăng nhập Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #f0f2f5; /* Màu nền xám nhạt tinh tế hơn */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
         }
         .login-container {
+            background-color: white;
+            padding: 2.5rem; /* Tăng padding một chút */
+            border-radius: 16px; /* Bo góc mềm mại hơn */
+            /* Bóng đổ mượt mà và sang trọng hơn */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            width: 100%;
             max-width: 400px;
-            margin: 100px auto;
+        }
+        .form-control {
+            border-radius: 8px; /* Bo góc input */
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+        }
+        .form-control:focus {
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15); /* Hiệu ứng focus nhẹ */
+        }
+        .btn-primary {
+            border-radius: 8px; /* Bo góc nút */
+            padding: 0.75rem;
+            font-weight: 600;
+            background-color: #0d6efd;
+            border: none;
+            transition: all 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #0b5ed7;
+            transform: translateY(-1px); /* Hiệu ứng hover nhẹ */
         }
     </style>
 </head>
 <body>
-
-<div class="container">
     <div class="login-container">
-        <div class="card shadow-lg border-0 rounded-lg">
-            <div class="card-header text-center bg-primary text-white">
-                <h3 class="font-weight-light my-2">Đăng Nhập Admin</h3>
-            </div>
-            <div class="card-body">
-                
-                <div th:if="${error}" class="alert alert-danger text-center" role="alert">
-                    Tên đăng nhập hoặc mật khẩu không đúng!
-                </div>
+        <h2 class="text-center mb-4 fw-bold text-dark">Hệ thống Admin</h2>
+        
+        <div th:if="${error}" class="alert alert-danger border-0 small p-2 text-center" role="alert">
+            Tài khoản hoặc mật khẩu không đúng.
+        </div>
 
-                <form th:action="@{/login}" method="post">
-                    <div class="form-floating mb-3">
-                        <input class="form-control" id="username" name="username" type="text" placeholder="Nhập tài khoản admin" required />
-                        <label for="username">👤 Tên đăng nhập</label>
-                    </div>
-                    
-                    <div class="form-floating mb-4">
-                        <input class="form-control" id="password" name="password" type="password" placeholder="Nhập mật khẩu" required />
-                        <label for="password">🔑 Mật khẩu</label>
-                    </div>
-                    
-                    <div class="d-grid gap-2 mt-4 mb-0">
-                        <button type="submit" class="btn btn-primary btn-lg">Đăng Nhập</button>
-                    </div>
-                </form>
-
+        <form th:action="@{/login}" method="post">
+            <div class="mb-3">
+                <label class="form-label small fw-bold text-muted">Tên đăng nhập</label>
+                <input name="username" type="text" class="form-control" placeholder="Nhập tài khoản" required>
             </div>
-            <div class="card-footer text-center py-3">
-                <div class="small"><a href="/" class="text-decoration-none">← Quay lại trang chủ</a></div>
+            <div class="mb-4">
+                <label class="form-label small fw-bold text-muted">Mật khẩu</label>
+                <input name="password" type="password" class="form-control" placeholder="Nhập mật khẩu" required>
             </div>
+            <button type="submit" class="btn btn-primary w-100">Đăng nhập ngay</button>
+        </form>
+        
+        <div class="text-center mt-4">
+            <a href="/" class="text-decoration-none small text-muted">← Quay về trang chủ</a>
         </div>
     </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
