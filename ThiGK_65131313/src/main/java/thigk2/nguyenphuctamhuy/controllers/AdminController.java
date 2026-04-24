@@ -81,7 +81,7 @@ public class AdminController {
     }
 
     @GetMapping("/categories/delete/{id}")
-    public String xoaLoai(@PathVariable("id") int id, HttpSession session) {
+    public String xoaLoai(@PathVariable("id") int id, HttpSession session) { 
         if (isNotLoggedIn(session)) return "redirect:/login";
         loaiTinTucService.deleteLoaiTinTuc(id);
         return "redirect:/admin/categories";

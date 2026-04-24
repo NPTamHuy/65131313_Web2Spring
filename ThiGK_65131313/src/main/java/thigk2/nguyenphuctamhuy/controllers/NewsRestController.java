@@ -22,7 +22,7 @@ public class NewsRestController {
     }
 
     @GetMapping("/tin-theo-loai/{idLoai}")
-    public List<TinTuc> getNewsByCategory(@PathVariable int idLoai) {
+    public List<TinTuc> getNewsByCategory(@PathVariable("idLoai") int idLoai) {
         return tinTucService.getTinTucByLoai(idLoai);
     }
 }
